@@ -1,0 +1,10 @@
+.codenit-grid {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 650px;
+    gap: 10px;
+}
+.codenit-grid label {
+    width: 200px !important;
+    flex-wrap: 0 0 200px !important;
+}

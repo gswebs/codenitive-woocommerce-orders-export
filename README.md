@@ -51,10 +51,22 @@ Yes, guest customer emails and data are included as long as the order has a bill
 *Initial release with filtering by order date, status, product.*
 *Selectable fields: Email, Name, Phone, Status, Order Date.*
 
+**0.1.1** 
+*Include the product SKU*
+*Line item product cost*
+*Bill to and Ship To information* 
+*Shipping cost (if customer paid shipping or if it was free)*
+
 ### Upgrade Notice
 
 **0.1.0**
 Initial release.
+
+**0.1.1** 
+*Include the product SKU*
+*Line item product cost*
+*Bill to and Ship To information* 
+*Shipping cost (if customer paid shipping or if it was free)*
 
 ### License
 
@@ -63,3 +75,85 @@ This plugin is licensed under the GPLv2 or later.
 ### Contact
 If you are facing with any issues in this plugin, send a message to the following email address.
 gswebsitedeveloper@gmail.com
+
+### Customization Example
+```php
+<?php
+add_action('init', function () {
+
+    if ( is_plugin_active('woocommerce-data-export-by-jmb-main/woocommerce-data-export-by-jmb.php') && is_plugin_active('woocommerce-shipment-tracking/woocommerce-shipment-tracking.php') ) {
+
+        $GLOBALS['jmb_export_tracking_enabled'] = false;
+
+        add_action('jmb_export_fields', function() {
+
+            $saved = get_option( JMB_ORDER_EXPORT_SETTINGS_OPTION, [] );
+            $checked = !empty( $saved['export_tracking'] );
+        
+            ?>
+            <label>
+                <input type="checkbox"
+                       name="export_tracking"
+                       value="1"
+                       <?php checked( $checked ); ?>>
+                Order Tracking
+            </label>
+            <?php
+        });
+
+
+        add_filter('jmb_export_order_data_filter_args', function($args) {
+            $args['export_tracking'] = !empty($_POST['export_tracking']) ? 1 : 0;
+            $GLOBALS['jmb_export_tracking_enabled'] = ( $args['export_tracking'] == 1 );
+            return $args;
+        });
+
+        add_filter('jmb_export_order_data_header', function($headers) {
+            global $jmb_export_tracking_enabled;
+            if (!empty($jmb_export_tracking_enabled)) {
+                $headers[] = 'tracking_code';
+            }
+            return $headers;
+        });
+
+        add_filter('jmb_export_data_array', function($rows) {
+            if (empty($GLOBALS['jmb_export_tracking_enabled'])) {
+                return $rows;
+            }
+
+            foreach ($rows as $index => $row) {
+                $order_id = $row[0]; // make sure order_id is the first column
+                $order = wc_get_order($order_id);
+
+                if (!$order) {
+                    $rows[$index][] = '';
+                    continue;
+                }
+
+                $tracking_items = (array) $order->get_meta('_wc_shipment_tracking_items');
+
+                if (!empty($tracking_items)) {
+                    $formatted = [];
+                    foreach ($tracking_items as $item) {
+                        $formatted[] = ($item['tracking_provider'] ?? '') . '-' . ($item['tracking_number'] ?? '');
+                    }
+                    $rows[$index][] = implode(', ', $formatted);
+                } else {
+                    $rows[$index][] = '';
+                }
+            }
+
+            return $rows;
+        });
+        
+        add_filter('jmb_order_export_save_settings', function($settings, $post){
+            $settings['export_tracking'] = !empty($post['export_tracking']) ? 1 : 0;
+            return $settings;
+        }, 10, 2);
+
+    }
+
+});
+?>
+
+```
