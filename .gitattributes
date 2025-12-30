@@ -1,0 +1,8 @@
+# Exclude GitHub-specific files from downloads
+/.github/* export-ignore
+/.gitignore export-ignore
+/.gitattributes export-ignore
+/tests/* export-ignore
+/docs/* export-ignore
+/readme-dev.md export-ignore
+/README.md export-ignore 
