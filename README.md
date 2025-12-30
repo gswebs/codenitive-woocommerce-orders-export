@@ -57,6 +57,9 @@ Yes, guest customer emails and data are included as long as the order has a bill
 *Bill to and Ship To information* 
 *Shipping cost (if customer paid shipping or if it was free)*
 
+**0.1.2** 
+*Plugin rename*
+
 ### Upgrade Notice
 
 **0.1.0**
@@ -67,6 +70,9 @@ Initial release.
 *Line item product cost*
 *Bill to and Ship To information* 
 *Shipping cost (if customer paid shipping or if it was free)*
+
+**0.1.2** 
+*Plugin rename*
 
 ### License
 

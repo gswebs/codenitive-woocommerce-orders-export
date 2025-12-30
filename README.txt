@@ -48,6 +48,9 @@ Yes, guest customer emails and data are included as long as the order has a bill
 
 == Changelog ==
 
+= 0.1.2 =
+Plugin rename
+
 = 0.1.1 =
 * Include the product SKU
 * Line item product cost
@@ -59,6 +62,9 @@ Yes, guest customer emails and data are included as long as the order has a bill
 * Selectable fields: Email, Name, Phone, Status, Order Date.
 
 == Upgrade Notice ==
+
+= 0.1.2 =
+Plugin rename
 
 = 0.1.1 =
 * Include the product SKU
