@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: WooCommerce Orders Data Exporter By JMB
+ * Plugin Name: Codenitive WooCommerce Orders Data Exporter
  * Plugin URI: https://github.com/gswebs/woocommerce-data-export-by-jmb
  * Description: Export data from WooCommerce orders as CSV.
- * Author: Gurjit Singh
- * Version: 0.1.1
- * Text Domain: jmb-woo-order-data-export
+ * Author: Codenitive
+ * Version: 0.1.2
+ * Text Domain: codenit-woo-order-data-export
  * Requires Plugins: woocommerce
  */
  
