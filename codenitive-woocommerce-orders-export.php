@@ -1,10 +1,13 @@
 <?php
 /**
  * Plugin Name: Codenitive WooCommerce Orders Data Exporter
- * Plugin URI: https://github.com/gswebs/woocommerce-data-export-by-jmb
+ * Plugin URI: https://github.com/gswebs/codenitive-woocommerce-orders-export
  * Description: Export data from WooCommerce orders as CSV.
  * Author: Codenitive
  * Version: 0.1.2
+ * Author URI: https://codenitive.com
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: codenit-woo-order-data-export
  * Requires Plugins: woocommerce
  */
